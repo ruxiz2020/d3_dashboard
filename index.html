@@ -490,16 +490,8 @@
         let e = d3.event;
         //console.log(e.sourceEvent.type)
 
-        // Avoid endless loops due to automatically controlled brushes in other graphs by
-        // explicitly checking for user-initiated brush events
-        // (The brush.move function is triggered again each time the current brush-event ends)
-        // --> "mousedown"    // MouseEvent (user)  or   BrushEvent (program)
         if (e.sourceEvent.type !== "mousedown" ) return;   // or .type !== "brush"
 
-        // Store a selection of the currently active graphs to be re-used in "brush" callback:
-        // Get the ID of the current ggraph group, the current_gbrush_selection consists of all
-        // other graphs. This is used to control the brush in all other graphs
-        // (The brush in the current graph is user controlled and does not need to be re-drawn)
         let gid = this.id;
         curr_gbrush_selection = d3.selectAll(".gbrush")
             .filter( function(d,i) {
@@ -518,10 +510,6 @@
         let e = d3.event;
         //console.log(e.sourceEvent.type)
 
-        // Avoid endless loops due to automatically controlled brushes in other graphs by
-        // explicitly checking for user-initiated brush events
-        // (The brush.move function is triggered again each time the current brush-event ends)
-        // --> "mousemove"  or  "brush"     // MouseEvent (user)  or   BrushEvent (program)
         if (e.sourceEvent.type !== "mousemove" ) return;   // or .type !== "brush"
 
         let s = e.selection;
@@ -547,10 +535,7 @@
 
         let e = d3.event;
         //console.log(e.sourceEvent.type)
-        // Avoid endless loops due to automatically controlled brushes (brush.move) in other graphs by
-        // explicitly checking for user-initiated brush events.
-        // (The brush.move function is triggered again each time the current brush-event ends)
-        // --> "end" for programatically controlled brush event, "mouseup" for the (relevant) user event
+
         if (e.sourceEvent.type !== "mouseup" ) return;   // or .type !== "brush"
 
         // This is essential to avoid endless loops when the brush.move function
@@ -710,7 +695,7 @@
 
 
 /*</script type="text/javascript">*/
-<script src="script.js" type="text/javascript"></script>
+<script type="text/javascript"></script>
 </body>
 
 </html>
